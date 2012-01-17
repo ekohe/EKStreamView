@@ -1,0 +1,443 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		459542D014C55616002BFF69 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542CF14C55616002BFF69 /* UIKit.framework */; };
+		459542D214C55616002BFF69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542D114C55616002BFF69 /* Foundation.framework */; };
+		459542D414C55616002BFF69 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542D314C55616002BFF69 /* CoreGraphics.framework */; };
+		459542DA14C55616002BFF69 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 459542D814C55616002BFF69 /* InfoPlist.strings */; };
+		459542DC14C55616002BFF69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 459542DB14C55616002BFF69 /* main.m */; };
+		459542E014C55616002BFF69 /* EKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459542DF14C55616002BFF69 /* EKAppDelegate.m */; };
+		459542E314C55616002BFF69 /* EKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459542E214C55616002BFF69 /* EKViewController.m */; };
+		459542E614C55616002BFF69 /* EKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 459542E414C55616002BFF69 /* EKViewController.xib */; };
+		459542EE14C55616002BFF69 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542ED14C55616002BFF69 /* SenTestingKit.framework */; };
+		459542EF14C55616002BFF69 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542CF14C55616002BFF69 /* UIKit.framework */; };
+		459542F014C55616002BFF69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542D114C55616002BFF69 /* Foundation.framework */; };
+		459542F814C55616002BFF69 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 459542F614C55616002BFF69 /* InfoPlist.strings */; };
+		459542FB14C55616002BFF69 /* StreamViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 459542FA14C55616002BFF69 /* StreamViewTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		459542F114C55616002BFF69 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 459542C214C55616002BFF69 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 459542CA14C55616002BFF69;
+			remoteInfo = StreamView;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		459542CB14C55616002BFF69 /* StreamView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StreamView.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		459542CF14C55616002BFF69 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		459542D114C55616002BFF69 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		459542D314C55616002BFF69 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		459542D714C55616002BFF69 /* StreamView-Info.plist */ = {isa = PBXFileReference; path = "StreamView-Info.plist"; sourceTree = "<group>"; };
+		459542D914C55616002BFF69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		459542DB14C55616002BFF69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		459542DD14C55616002BFF69 /* StreamView-Prefix.pch */ = {isa = PBXFileReference; path = "StreamView-Prefix.pch"; sourceTree = "<group>"; };
+		459542DE14C55616002BFF69 /* EKAppDelegate.h */ = {isa = PBXFileReference; path = EKAppDelegate.h; sourceTree = "<group>"; };
+		459542DF14C55616002BFF69 /* EKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EKAppDelegate.m; sourceTree = "<group>"; };
+		459542E114C55616002BFF69 /* EKViewController.h */ = {isa = PBXFileReference; path = EKViewController.h; sourceTree = "<group>"; };
+		459542E214C55616002BFF69 /* EKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EKViewController.m; sourceTree = "<group>"; };
+		459542E514C55616002BFF69 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EKViewController.xib; sourceTree = "<group>"; };
+		459542EC14C55616002BFF69 /* StreamViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreamViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		459542ED14C55616002BFF69 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		459542F514C55616002BFF69 /* StreamViewTests-Info.plist */ = {isa = PBXFileReference; path = "StreamViewTests-Info.plist"; sourceTree = "<group>"; };
+		459542F714C55616002BFF69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		459542F914C55616002BFF69 /* StreamViewTests.h */ = {isa = PBXFileReference; path = StreamViewTests.h; sourceTree = "<group>"; };
+		459542FA14C55616002BFF69 /* StreamViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamViewTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		459542C814C55616002BFF69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459542D014C55616002BFF69 /* UIKit.framework in Frameworks */,
+				459542D214C55616002BFF69 /* Foundation.framework in Frameworks */,
+				459542D414C55616002BFF69 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		459542E814C55616002BFF69 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459542EE14C55616002BFF69 /* SenTestingKit.framework in Frameworks */,
+				459542EF14C55616002BFF69 /* UIKit.framework in Frameworks */,
+				459542F014C55616002BFF69 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		459542C014C55616002BFF69 = {
+			isa = PBXGroup;
+			children = (
+				459542D514C55616002BFF69 /* StreamView */,
+				459542F314C55616002BFF69 /* StreamViewTests */,
+				459542CE14C55616002BFF69 /* Frameworks */,
+				459542CC14C55616002BFF69 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		459542CC14C55616002BFF69 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				459542CB14C55616002BFF69 /* StreamView.app */,
+				459542EC14C55616002BFF69 /* StreamViewTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		459542CE14C55616002BFF69 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				459542CF14C55616002BFF69 /* UIKit.framework */,
+				459542D114C55616002BFF69 /* Foundation.framework */,
+				459542D314C55616002BFF69 /* CoreGraphics.framework */,
+				459542ED14C55616002BFF69 /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		459542D514C55616002BFF69 /* StreamView */ = {
+			isa = PBXGroup;
+			children = (
+				459542DE14C55616002BFF69 /* EKAppDelegate.h */,
+				459542DF14C55616002BFF69 /* EKAppDelegate.m */,
+				459542E114C55616002BFF69 /* EKViewController.h */,
+				459542E214C55616002BFF69 /* EKViewController.m */,
+				459542E414C55616002BFF69 /* EKViewController.xib */,
+				459542D614C55616002BFF69 /* Supporting Files */,
+			);
+			path = StreamView;
+			sourceTree = "<group>";
+		};
+		459542D614C55616002BFF69 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				459542D714C55616002BFF69 /* StreamView-Info.plist */,
+				459542D814C55616002BFF69 /* InfoPlist.strings */,
+				459542DB14C55616002BFF69 /* main.m */,
+				459542DD14C55616002BFF69 /* StreamView-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		459542F314C55616002BFF69 /* StreamViewTests */ = {
+			isa = PBXGroup;
+			children = (
+				459542F914C55616002BFF69 /* StreamViewTests.h */,
+				459542FA14C55616002BFF69 /* StreamViewTests.m */,
+				459542F414C55616002BFF69 /* Supporting Files */,
+			);
+			path = StreamViewTests;
+			sourceTree = "<group>";
+		};
+		459542F414C55616002BFF69 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				459542F514C55616002BFF69 /* StreamViewTests-Info.plist */,
+				459542F614C55616002BFF69 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		459542CA14C55616002BFF69 /* StreamView */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 459542FE14C55616002BFF69 /* Build configuration list for PBXNativeTarget "StreamView" */;
+			buildPhases = (
+				459542C714C55616002BFF69 /* Sources */,
+				459542C814C55616002BFF69 /* Frameworks */,
+				459542C914C55616002BFF69 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = StreamView;
+			productName = StreamView;
+			productReference = 459542CB14C55616002BFF69 /* StreamView.app */;
+			productType = "com.apple.product-type.application";
+		};
+		459542EB14C55616002BFF69 /* StreamViewTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4595430114C55616002BFF69 /* Build configuration list for PBXNativeTarget "StreamViewTests" */;
+			buildPhases = (
+				459542E714C55616002BFF69 /* Sources */,
+				459542E814C55616002BFF69 /* Frameworks */,
+				459542E914C55616002BFF69 /* Resources */,
+				459542EA14C55616002BFF69 /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				459542F214C55616002BFF69 /* PBXTargetDependency */,
+			);
+			name = StreamViewTests;
+			productName = StreamViewTests;
+			productReference = 459542EC14C55616002BFF69 /* StreamViewTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		459542C214C55616002BFF69 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = ekohe.com;
+			};
+			buildConfigurationList = 459542C514C55616002BFF69 /* Build configuration list for PBXProject "StreamView" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 459542C014C55616002BFF69;
+			productRefGroup = 459542CC14C55616002BFF69 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				459542CA14C55616002BFF69 /* StreamView */,
+				459542EB14C55616002BFF69 /* StreamViewTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		459542C914C55616002BFF69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459542DA14C55616002BFF69 /* InfoPlist.strings in Resources */,
+				459542E614C55616002BFF69 /* EKViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		459542E914C55616002BFF69 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459542F814C55616002BFF69 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		459542EA14C55616002BFF69 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		459542C714C55616002BFF69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459542DC14C55616002BFF69 /* main.m in Sources */,
+				459542E014C55616002BFF69 /* EKAppDelegate.m in Sources */,
+				459542E314C55616002BFF69 /* EKViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		459542E714C55616002BFF69 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				459542FB14C55616002BFF69 /* StreamViewTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		459542F214C55616002BFF69 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 459542CA14C55616002BFF69 /* StreamView */;
+			targetProxy = 459542F114C55616002BFF69 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		459542D814C55616002BFF69 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				459542D914C55616002BFF69 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		459542E414C55616002BFF69 /* EKViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				459542E514C55616002BFF69 /* en */,
+			);
+			name = EKViewController.xib;
+			sourceTree = "<group>";
+		};
+		459542F614C55616002BFF69 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				459542F714C55616002BFF69 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		459542FC14C55616002BFF69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		459542FD14C55616002BFF69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		459542FF14C55616002BFF69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StreamView/StreamView-Prefix.pch";
+				INFOPLIST_FILE = "StreamView/StreamView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		4595430014C55616002BFF69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StreamView/StreamView-Prefix.pch";
+				INFOPLIST_FILE = "StreamView/StreamView-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		4595430214C55616002BFF69 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StreamView.app/StreamView";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StreamView/StreamView-Prefix.pch";
+				INFOPLIST_FILE = "StreamViewTests/StreamViewTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		4595430314C55616002BFF69 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/StreamView.app/StreamView";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "StreamView/StreamView-Prefix.pch";
+				INFOPLIST_FILE = "StreamViewTests/StreamViewTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		459542C514C55616002BFF69 /* Build configuration list for PBXProject "StreamView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				459542FC14C55616002BFF69 /* Debug */,
+				459542FD14C55616002BFF69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		459542FE14C55616002BFF69 /* Build configuration list for PBXNativeTarget "StreamView" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				459542FF14C55616002BFF69 /* Debug */,
+				4595430014C55616002BFF69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4595430114C55616002BFF69 /* Build configuration list for PBXNativeTarget "StreamViewTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4595430214C55616002BFF69 /* Debug */,
+				4595430314C55616002BFF69 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 459542C214C55616002BFF69 /* Project object */;
+}
