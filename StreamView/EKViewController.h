@@ -13,6 +13,6 @@
 {
     NSMutableArray *randomHeights;
 }
-@property (retain, nonatomic) IBOutlet EKStreamView *waterfall;
+@property (retain, nonatomic) IBOutlet EKStreamView *stream;
 
 @end

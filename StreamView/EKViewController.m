@@ -10,11 +10,12 @@
 #import "MyCell.h"
 
 @implementation EKViewController
-@synthesize waterfall;
+@synthesize stream;
 
-- (void)dealloc {
+- (void)dealloc
+{
     [randomHeights release];
-    [waterfall release];
+    [stream release];
     [super dealloc];
 }
 
@@ -38,12 +39,12 @@
         [randomHeights addObject:[NSNumber numberWithFloat:h]];
     }
     
-    [waterfall reloadData];
+    [stream reloadData];
 }
 
 - (void)viewDidUnload
 {
-    [self setWaterfall:nil];
+    [self setStream:nil];
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -72,7 +73,7 @@
     static NSString *CellID2 = @"MyCell2";
     
     BOOL redCell = index % 3 == 0;
-    NSString *CellID =  CellID1;
+    NSString *CellID =  redCell ? CellID2 : CellID1;
     
     MyCell *cell;
     
@@ -81,7 +82,7 @@
     if (cell == nil) {
         cell = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
         cell.reuseIdentifier = CellID;
-//        if (redCell) cell.label.textColor = [UIColor redColor];
+        if (redCell) cell.label.textColor = [UIColor redColor];
     }
     
     cell.label.text = [NSString stringWithFormat:@"%d",index];
@@ -92,11 +93,6 @@
 - (CGFloat)streamView:(EKStreamView *)streamView heightForCellAtIndex:(NSInteger)index
 {
     return [[randomHeights objectAtIndex:index] floatValue];
-}
-
-- (void)streamView:(EKStreamView *)streamView setContentForCell:(MyCell *)cell atIndex:(NSInteger)index
-{
-    cell.label.text = [NSString stringWithFormat:@"%d",index];
 }
 
 @end
