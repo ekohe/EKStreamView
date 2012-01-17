@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol EKResusableCell <NSObject>
+
+@property (nonatomic, retain) NSString *reuseIdentifier;
+
+@end
+
 
 
 @interface EKStreamViewCellInfo : NSObject 
@@ -16,7 +22,7 @@
 @property (nonatomic, assign) NSUInteger index;
 
 // You SHOULD ONLY access this property when this object is in visibleCellInfo!
-@property (nonatomic, assign) UIView *cell;
+@property (nonatomic, assign) UIView<EKResusableCell> *cell;
 
 @end
 
@@ -29,9 +35,8 @@
 
 - (NSInteger)numberOfCellsInStreamView:(EKStreamView *)streamView;
 - (NSInteger)numberOfColumnsInStreamView:(EKStreamView *)streamView;
-- (UIView *)cellForStreamView:(EKStreamView *)streamView;
+- (UIView<EKResusableCell> *)cellForStreamView:(EKStreamView *)streamView atIndex:(NSInteger)index;
 - (CGFloat)streamView:(EKStreamView *)streamView heightForCellAtIndex:(NSInteger)index;
-- (void)streamView:(EKStreamView *)streamView setContentForCell:(UIView *)cell atIndex:(NSInteger)index;
 
 @optional
 
@@ -50,14 +55,15 @@
     *cellHeightsByIndex,    // 1d
     *cellHeightsByColumn,   // 2d
     *heightsForColumns,     // 1d
-    *rectsForCells,         // 2d EKWaterfallCellInfo
-    *cellPool;              // 1d UIView
+    *rectsForCells;         // 2d EKWaterfallCellInfo
     
+    NSMutableDictionary *cellCache; // reuseIdentifier => NSMutableArray
     NSSet *visibleCellInfo;
 }
 
 @property (nonatomic, assign) id<EKStreamViewDelegate> delegate;
 
+- (id<EKResusableCell>)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 - (void)reloadData;
 
 @end

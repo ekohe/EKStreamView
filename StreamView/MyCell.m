@@ -11,12 +11,13 @@
 
 @implementation MyCell
 
-@synthesize label;
+@synthesize label, reuseIdentifier;
 
 
 - (void)dealloc
 {
     [label release];
+    [reuseIdentifier release];
     [super dealloc];
 }
 

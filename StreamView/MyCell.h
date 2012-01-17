@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "EKStreamView.h"
 
-@interface MyCell : UIView
+@interface MyCell : UIView<EKResusableCell>
+{
+    NSString *reuseIdentifier;
+}
 
 @property (nonatomic, readonly) UILabel *label;
 

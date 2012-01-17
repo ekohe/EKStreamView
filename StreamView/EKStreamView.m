@@ -37,11 +37,10 @@
 
 - (void)setup;
 - (NSSet *)getVisibleCellInfo;
-- (UIView *)getCell;
 - (void)layoutCellWithCellInfo:(EKStreamViewCellInfo *)info;
 
 @property (nonatomic, retain) NSSet *visibleCellInfo;
-@property (nonatomic, retain) NSMutableArray *cellPool;
+@property (nonatomic, retain) NSMutableDictionary *cellCache;
 
 @end
 
@@ -60,7 +59,7 @@
 
 @implementation EKStreamView
 
-@synthesize delegate, visibleCellInfo, cellPool;
+@synthesize delegate, visibleCellInfo, cellCache;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -88,7 +87,7 @@
     [heightsForColumns release];
     [rectsForCells release];
     [visibleCellInfo release];
-    [cellPool release];
+    [cellCache release];
     [super dealloc];
 }
 
@@ -98,7 +97,7 @@
     [cellHeightsByColumn removeAllObjects];
     [heightsForColumns removeAllObjects];
     [rectsForCells removeAllObjects];
-    [cellPool removeAllObjects];
+    [cellCache removeAllObjects];
     
     // calculate height for all cells
     NSInteger numberOfColumns = [delegate numberOfColumnsInStreamView:self];
@@ -170,6 +169,18 @@
     free(cellX);
 }
 
+- (id<EKResusableCell>)dequeueReusableCellWithIdentifier:(NSString *)identifier
+{
+    NSMutableArray *cellArray = [cellCache objectForKey:identifier];
+    id<EKResusableCell> cell = nil;
+    if ([cellArray count] > 0) {
+        cell = [[[cellArray lastObject] retain] autorelease];
+        [cellArray removeLastObject];
+    } 
+    
+    return cell;
+}
+
 #pragma mark - Private Methods
 
 - (NSSet *)getVisibleCellInfo
@@ -199,24 +210,10 @@
     return ret;
 }
 
-- (UIView *)getCell
-{
-    UIView *cell;
-    if ([cellPool count] > 0) {
-        cell = [[[cellPool lastObject] retain] autorelease];
-        [cellPool removeLastObject];
-    } else {
-        cell = [delegate cellForStreamView:self];
-    }
-    
-    return cell;
-}
-
 - (void)layoutCellWithCellInfo:(EKStreamViewCellInfo *)info
 {
-    UIView *cell = [self getCell];
+    UIView<EKResusableCell> *cell = [delegate cellForStreamView:self atIndex:info.index];
     cell.frame = info.frame;
-    [delegate streamView:self setContentForCell:cell atIndex:info.index];
     info.cell = cell;
     [self addSubview:cell];
 }
@@ -231,20 +228,13 @@
     cellHeightsByColumn = [[NSMutableArray alloc] initWithCapacity:5];
     heightsForColumns = [[NSMutableArray alloc] initWithCapacity:5];
     rectsForCells = [[NSMutableArray alloc] initWithCapacity:5];
-    cellPool = [[NSMutableArray alloc] initWithCapacity:20];
+    cellCache = [[NSMutableDictionary alloc] initWithCapacity:5];
 }
 
 @end
 
 
 
-
-
-// TODO: in scrollView did scroll to position delegate method,
-// 1. determine which cells should be visible
-// 2. compare should-be-visible list to the current visibleCells list
-//    For any missing cells, deque and setup it to the position;
-//    for any cells that is there but not in should-be-visible list, remove it and put it into the queue.
 
 
 @implementation EKStreamViewUIScrollViewDelegate
@@ -255,11 +245,20 @@
 {
     NSSet *newVisibleCellInfo = [streamView getVisibleCellInfo];
     NSSet *visibleCellInfo = streamView.visibleCellInfo;
-    NSMutableArray *cellPool = streamView.cellPool;
+    NSMutableDictionary *cellCache = streamView.cellCache;
+    
+    
     for (EKStreamViewCellInfo *info in visibleCellInfo) {
         if (![newVisibleCellInfo containsObject:info]) {
             // info.cell.retainCount: 1
-            [cellPool addObject:info.cell];
+            NSString *cellID = info.cell.reuseIdentifier;
+            NSMutableArray *cellArray = [cellCache objectForKey:cellID];
+            if (cellArray == nil) {
+                cellArray = [NSMutableArray arrayWithCapacity:10];
+                [cellCache setObject:cellArray forKey:cellID];
+            }
+            
+            [cellArray addObject:info.cell];
             // info.cell.retainCount: 2
             [info.cell removeFromSuperview];
             // info.cell.retainCount: 1

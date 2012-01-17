@@ -66,9 +66,27 @@
     return 3;
 }
 
-- (UIView *)cellForStreamView:(EKStreamView *)streamView
+- (UIView *)cellForStreamView:(EKStreamView *)streamView atIndex:(NSInteger)index
 {
-    return [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
+    static NSString *CellID1 = @"MyCell1";
+    static NSString *CellID2 = @"MyCell2";
+    
+    BOOL redCell = index % 3 == 0;
+    NSString *CellID =  CellID1;
+    
+    MyCell *cell;
+    
+    cell = (MyCell *)[streamView dequeueReusableCellWithIdentifier:CellID];
+    
+    if (cell == nil) {
+        cell = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
+        cell.reuseIdentifier = CellID;
+//        if (redCell) cell.label.textColor = [UIColor redColor];
+    }
+    
+    cell.label.text = [NSString stringWithFormat:@"%d",index];
+    
+    return cell;
 }
 
 - (CGFloat)streamView:(EKStreamView *)streamView heightForCellAtIndex:(NSInteger)index
