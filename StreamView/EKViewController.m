@@ -95,4 +95,20 @@
     return [[randomHeights objectAtIndex:index] floatValue];
 }
 
+- (UIView *)headerForStreamView:(EKStreamView *)streamView
+{
+    MyCell *header = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)] autorelease];
+    header.label.text = @"This is the header";
+    
+    return header;
+}
+
+- (UIView *)footerForStreamView:(EKStreamView *)streamView
+{
+    MyCell *footer = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)] autorelease];
+    footer.label.text = @"This is the footer";
+    
+    return footer;
+}
+
 @end

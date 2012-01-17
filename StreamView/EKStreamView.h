@@ -40,6 +40,11 @@
 
 @optional
 
+- (UIView *)headerForStreamView:(EKStreamView *)streamView;
+- (UIView *)footerForStreamView:(EKStreamView *)streamView;
+
+@optional
+
 @end
 
 
@@ -54,11 +59,11 @@
     NSMutableArray
     *cellHeightsByIndex,    // 1d
     *cellHeightsByColumn,   // 2d
-    *heightsForColumns,     // 1d
     *rectsForCells;         // 2d EKWaterfallCellInfo
     
     NSMutableDictionary *cellCache; // reuseIdentifier => NSMutableArray
     NSSet *visibleCellInfo;
+    UIView *headerView, *footerView;
 }
 
 @property (nonatomic, assign) id<EKStreamViewDelegate> delegate;

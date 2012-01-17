@@ -84,10 +84,12 @@
     [[super delegate] release];
     [cellHeightsByIndex release];
     [cellHeightsByColumn release];
-    [heightsForColumns release];
     [rectsForCells release];
     [visibleCellInfo release];
     [cellCache release];
+    
+    [headerView release];
+    [footerView release];
     [super dealloc];
 }
 
@@ -95,9 +97,26 @@
 {
     [cellHeightsByIndex removeAllObjects];
     [cellHeightsByColumn removeAllObjects];
-    [heightsForColumns removeAllObjects];
     [rectsForCells removeAllObjects];
     [cellCache removeAllObjects];
+    
+    if ([delegate respondsToSelector:@selector(headerForStreamView:)]) {
+        headerView = [[delegate headerForStreamView:self] retain];
+        CGRect f = headerView.frame;
+        f.origin = CGPointZero;
+        headerView.frame = f;
+
+        [self addSubview:headerView];
+    } else {
+        headerView = nil;
+    }
+    
+    if ([delegate respondsToSelector:@selector(footerForStreamView:)]) {
+        footerView = [[delegate footerForStreamView:self] retain];
+        [self addSubview:footerView];
+    } else {
+        footerView = nil;
+    }
     
     // calculate height for all cells
     NSInteger numberOfColumns = [delegate numberOfColumnsInStreamView:self];
@@ -113,11 +132,12 @@
     
     
     CGFloat columnWidth = self.frame.size.width / numberOfColumns;
+    CGFloat cellHeight = headerView ? headerView.frame.size.height : 0.0f;
     for (int i = 0; i < numberOfColumns; i++) {
         [cellHeightsByColumn addObject:[NSMutableArray arrayWithCapacity:20]];
         [rectsForCells addObject:[NSMutableArray arrayWithCapacity:20]];
-        [heightsForColumns addObject:[NSNumber numberWithFloat:0.0f]];
         cellX[i] = (i == 0 ? 0.0f : cellX[i - 1] + columnWidth);
+        columnHeights[i] = cellHeight;
     }
 
     for (int i = 0; i < numberOfCells; i++) {
@@ -159,11 +179,16 @@
             maxHeight = columnHeights[i];
     }
     
+    if (footerView) {
+        CGRect f = footerView.frame;
+        f.origin = CGPointMake(0.0f, maxHeight);
+        footerView.frame = f;
+        
+        maxHeight += footerView.frame.size.height;
+    }
+    
     self.contentSize = CGSizeMake(0.0f, maxHeight);
     
-    for (int i = 0; i < numberOfColumns; i++) {
-        [heightsForColumns addObject:[NSNumber numberWithFloat:columnHeights[i]]];
-    }
     
     free(columnHeights);
     free(cellX);
@@ -226,7 +251,6 @@
     
     cellHeightsByIndex = [[NSMutableArray alloc] initWithCapacity:30];
     cellHeightsByColumn = [[NSMutableArray alloc] initWithCapacity:5];
-    heightsForColumns = [[NSMutableArray alloc] initWithCapacity:5];
     rectsForCells = [[NSMutableArray alloc] initWithCapacity:5];
     cellCache = [[NSMutableDictionary alloc] initWithCapacity:5];
 }
