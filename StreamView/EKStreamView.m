@@ -382,7 +382,7 @@
     if ([streamView.delegate respondsToSelector:@selector(scrollViewShouldScrollToTop:)])
         return [streamView.delegate scrollViewShouldScrollToTop:streamView];
     else
-        return NO;
+        return YES;
 }
 
 - (void)scrollViewDidScrollToTop:(UIScrollView *)scrollView
