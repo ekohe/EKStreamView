@@ -12,7 +12,9 @@
 @interface EKViewController : UIViewController<EKStreamViewDelegate>
 {
     NSMutableArray *randomHeights;
+    int page;
 }
+
 @property (retain, nonatomic) IBOutlet EKStreamView *stream;
 
 @end

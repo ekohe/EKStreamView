@@ -9,6 +9,8 @@
 #import "EKViewController.h"
 #import "MyCell.h"
 
+static int MaxPage = 3;
+
 @implementation EKViewController
 @synthesize stream;
 
@@ -38,6 +40,7 @@
         CGFloat h = arc4random() % 200 + 50.f;
         [randomHeights addObject:[NSNumber numberWithFloat:h]];
     }
+    stream.scrollsToTop = YES;
     
     [stream reloadData];
 }
@@ -105,10 +108,29 @@
 
 - (UIView *)footerForStreamView:(EKStreamView *)streamView
 {
-    MyCell *footer = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)] autorelease];
-    footer.label.text = @"This is the footer";
-    
-    return footer;
+    if (page <= MaxPage) {
+        MyCell *footer = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)] autorelease];
+        footer.label.text = @"This is the footer";
+        
+        return footer;
+    } else {
+        return nil;
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    if (ABS(scrollView.contentSize.height - scrollView.frame.size.height - scrollView.contentOffset.y) < 3
+        && page <= MaxPage) {
+        for (int i = 0; i < 100; i++) {
+            CGFloat h = arc4random() % 200 + 50.f;
+            [randomHeights addObject:[NSNumber numberWithFloat:h]];
+        }
+        
+        page++;
+        
+        [stream reloadData];
+    }
 }
 
 @end

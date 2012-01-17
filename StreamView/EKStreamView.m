@@ -99,6 +99,8 @@
     [cellHeightsByColumn removeAllObjects];
     [rectsForCells removeAllObjects];
     [cellCache removeAllObjects];
+    [headerView removeFromSuperview];
+    [footerView removeFromSuperview];
     
     if ([delegate respondsToSelector:@selector(headerForStreamView:)]) {
         headerView = [[delegate headerForStreamView:self] retain];
@@ -323,7 +325,8 @@
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate
 {
-    
+    if ([streamView.delegate respondsToSelector:@selector(scrollViewDidEndDragging:willDecelerate:)])
+        [streamView.delegate scrollViewDidEndDragging:streamView willDecelerate:decelerate];
 }
 
 - (void)scrollViewWillBeginDecelerating:(UIScrollView *)scrollView
