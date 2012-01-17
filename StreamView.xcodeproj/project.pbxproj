@@ -13,13 +13,16 @@
 		459542DA14C55616002BFF69 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 459542D814C55616002BFF69 /* InfoPlist.strings */; };
 		459542DC14C55616002BFF69 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 459542DB14C55616002BFF69 /* main.m */; };
 		459542E014C55616002BFF69 /* EKAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 459542DF14C55616002BFF69 /* EKAppDelegate.m */; };
-		459542E314C55616002BFF69 /* EKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 459542E214C55616002BFF69 /* EKViewController.m */; };
-		459542E614C55616002BFF69 /* EKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 459542E414C55616002BFF69 /* EKViewController.xib */; };
 		459542EE14C55616002BFF69 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542ED14C55616002BFF69 /* SenTestingKit.framework */; };
 		459542EF14C55616002BFF69 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542CF14C55616002BFF69 /* UIKit.framework */; };
 		459542F014C55616002BFF69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542D114C55616002BFF69 /* Foundation.framework */; };
 		459542F814C55616002BFF69 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 459542F614C55616002BFF69 /* InfoPlist.strings */; };
 		459542FB14C55616002BFF69 /* StreamViewTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 459542FA14C55616002BFF69 /* StreamViewTests.m */; };
+		4595430514C55624002BFF69 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4595430414C55624002BFF69 /* QuartzCore.framework */; };
+		4595431114C55661002BFF69 /* EKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595430B14C55661002BFF69 /* EKViewController.m */; };
+		4595431214C55661002BFF69 /* EKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4595430C14C55661002BFF69 /* EKViewController.xib */; };
+		4595431314C55661002BFF69 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595430E14C55661002BFF69 /* MyCell.m */; };
+		4595431414C55661002BFF69 /* EKStreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595431014C55661002BFF69 /* EKStreamView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,21 +40,26 @@
 		459542CF14C55616002BFF69 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		459542D114C55616002BFF69 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		459542D314C55616002BFF69 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		459542D714C55616002BFF69 /* StreamView-Info.plist */ = {isa = PBXFileReference; path = "StreamView-Info.plist"; sourceTree = "<group>"; };
+		459542D714C55616002BFF69 /* StreamView-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StreamView-Info.plist"; sourceTree = "<group>"; };
 		459542D914C55616002BFF69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		459542DB14C55616002BFF69 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		459542DD14C55616002BFF69 /* StreamView-Prefix.pch */ = {isa = PBXFileReference; path = "StreamView-Prefix.pch"; sourceTree = "<group>"; };
-		459542DE14C55616002BFF69 /* EKAppDelegate.h */ = {isa = PBXFileReference; path = EKAppDelegate.h; sourceTree = "<group>"; };
+		459542DD14C55616002BFF69 /* StreamView-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "StreamView-Prefix.pch"; sourceTree = "<group>"; };
+		459542DE14C55616002BFF69 /* EKAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EKAppDelegate.h; sourceTree = "<group>"; };
 		459542DF14C55616002BFF69 /* EKAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EKAppDelegate.m; sourceTree = "<group>"; };
-		459542E114C55616002BFF69 /* EKViewController.h */ = {isa = PBXFileReference; path = EKViewController.h; sourceTree = "<group>"; };
-		459542E214C55616002BFF69 /* EKViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EKViewController.m; sourceTree = "<group>"; };
-		459542E514C55616002BFF69 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/EKViewController.xib; sourceTree = "<group>"; };
 		459542EC14C55616002BFF69 /* StreamViewTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StreamViewTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		459542ED14C55616002BFF69 /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		459542F514C55616002BFF69 /* StreamViewTests-Info.plist */ = {isa = PBXFileReference; path = "StreamViewTests-Info.plist"; sourceTree = "<group>"; };
+		459542F514C55616002BFF69 /* StreamViewTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "StreamViewTests-Info.plist"; sourceTree = "<group>"; };
 		459542F714C55616002BFF69 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		459542F914C55616002BFF69 /* StreamViewTests.h */ = {isa = PBXFileReference; path = StreamViewTests.h; sourceTree = "<group>"; };
+		459542F914C55616002BFF69 /* StreamViewTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = StreamViewTests.h; sourceTree = "<group>"; };
 		459542FA14C55616002BFF69 /* StreamViewTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = StreamViewTests.m; sourceTree = "<group>"; };
+		4595430414C55624002BFF69 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		4595430A14C55661002BFF69 /* EKViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKViewController.h; sourceTree = "<group>"; };
+		4595430B14C55661002BFF69 /* EKViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKViewController.m; sourceTree = "<group>"; };
+		4595430C14C55661002BFF69 /* EKViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EKViewController.xib; sourceTree = "<group>"; };
+		4595430D14C55661002BFF69 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
+		4595430E14C55661002BFF69 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
+		4595430F14C55661002BFF69 /* EKStreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKStreamView.h; sourceTree = "<group>"; };
+		4595431014C55661002BFF69 /* EKStreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKStreamView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4595430514C55624002BFF69 /* QuartzCore.framework in Frameworks */,
 				459542D014C55616002BFF69 /* UIKit.framework in Frameworks */,
 				459542D214C55616002BFF69 /* Foundation.framework in Frameworks */,
 				459542D414C55616002BFF69 /* CoreGraphics.framework in Frameworks */,
@@ -100,6 +109,7 @@
 		459542CE14C55616002BFF69 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4595430414C55624002BFF69 /* QuartzCore.framework */,
 				459542CF14C55616002BFF69 /* UIKit.framework */,
 				459542D114C55616002BFF69 /* Foundation.framework */,
 				459542D314C55616002BFF69 /* CoreGraphics.framework */,
@@ -113,9 +123,13 @@
 			children = (
 				459542DE14C55616002BFF69 /* EKAppDelegate.h */,
 				459542DF14C55616002BFF69 /* EKAppDelegate.m */,
-				459542E114C55616002BFF69 /* EKViewController.h */,
-				459542E214C55616002BFF69 /* EKViewController.m */,
-				459542E414C55616002BFF69 /* EKViewController.xib */,
+				4595430A14C55661002BFF69 /* EKViewController.h */,
+				4595430B14C55661002BFF69 /* EKViewController.m */,
+				4595430C14C55661002BFF69 /* EKViewController.xib */,
+				4595430D14C55661002BFF69 /* MyCell.h */,
+				4595430E14C55661002BFF69 /* MyCell.m */,
+				4595430F14C55661002BFF69 /* EKStreamView.h */,
+				4595431014C55661002BFF69 /* EKStreamView.m */,
 				459542D614C55616002BFF69 /* Supporting Files */,
 			);
 			path = StreamView;
@@ -223,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				459542DA14C55616002BFF69 /* InfoPlist.strings in Resources */,
-				459542E614C55616002BFF69 /* EKViewController.xib in Resources */,
+				4595431214C55661002BFF69 /* EKViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -260,7 +274,9 @@
 			files = (
 				459542DC14C55616002BFF69 /* main.m in Sources */,
 				459542E014C55616002BFF69 /* EKAppDelegate.m in Sources */,
-				459542E314C55616002BFF69 /* EKViewController.m in Sources */,
+				4595431114C55661002BFF69 /* EKViewController.m in Sources */,
+				4595431314C55661002BFF69 /* MyCell.m in Sources */,
+				4595431414C55661002BFF69 /* EKStreamView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -289,14 +305,6 @@
 				459542D914C55616002BFF69 /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		459542E414C55616002BFF69 /* EKViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				459542E514C55616002BFF69 /* en */,
-			);
-			name = EKViewController.xib;
 			sourceTree = "<group>";
 		};
 		459542F614C55616002BFF69 /* InfoPlist.strings */ = {
@@ -359,6 +367,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StreamView/StreamView-Prefix.pch";
 				INFOPLIST_FILE = "StreamView/StreamView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -370,6 +379,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "StreamView/StreamView-Prefix.pch";
 				INFOPLIST_FILE = "StreamView/StreamView-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
