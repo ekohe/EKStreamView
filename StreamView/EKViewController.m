@@ -9,7 +9,7 @@
 #import "EKViewController.h"
 #import "MyCell.h"
 
-static int MaxPage = 3;
+static int MaxPage = 1;
 
 @implementation EKViewController
 @synthesize stream;
@@ -41,6 +41,9 @@ static int MaxPage = 3;
         [randomHeights addObject:[NSNumber numberWithFloat:h]];
     }
     stream.scrollsToTop = YES;
+    
+    stream.cellPadding = 5.0f;
+    stream.columnPadding = 5.0f;
     
     [stream reloadData];
 }
@@ -100,7 +103,7 @@ static int MaxPage = 3;
 
 - (UIView *)headerForStreamView:(EKStreamView *)streamView
 {
-    MyCell *header = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)] autorelease];
+    MyCell *header = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - stream.columnPadding * 2, 60)] autorelease];
     header.label.text = @"This is the header";
     
     return header;
@@ -109,7 +112,7 @@ static int MaxPage = 3;
 - (UIView *)footerForStreamView:(EKStreamView *)streamView
 {
     if (page <= MaxPage) {
-        MyCell *footer = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 60)] autorelease];
+        MyCell *footer = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - stream.columnPadding * 2, 60)] autorelease];
         footer.label.text = @"This is the footer";
         
         return footer;
@@ -118,19 +121,19 @@ static int MaxPage = 3;
     }
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
-{
-    if (ABS(scrollView.contentSize.height - scrollView.frame.size.height - scrollView.contentOffset.y) < 3
-        && page <= MaxPage) {
-        for (int i = 0; i < 100; i++) {
-            CGFloat h = arc4random() % 200 + 50.f;
-            [randomHeights addObject:[NSNumber numberWithFloat:h]];
-        }
-        
-        page++;
-        
-        [stream reloadData];
-    }
-}
-
+//- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+//{
+//    if (ABS(scrollView.contentSize.height - scrollView.frame.size.height - scrollView.contentOffset.y) < 3
+//        && page <= MaxPage) {
+//        for (int i = 0; i < 100; i++) {
+//            CGFloat h = arc4random() % 200 + 50.f;
+//            [randomHeights addObject:[NSNumber numberWithFloat:h]];
+//        }
+//        
+//        page++;
+//        
+//        [stream reloadData];
+//    }
+//}
+//
 @end

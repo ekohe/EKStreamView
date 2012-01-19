@@ -67,6 +67,8 @@
 }
 
 @property (nonatomic, assign) id<EKStreamViewDelegate> delegate;
+@property (nonatomic, assign) CGFloat columnPadding;
+@property (nonatomic, assign) CGFloat cellPadding;
 
 - (id<EKResusableCell>)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 - (void)reloadData;

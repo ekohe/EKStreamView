@@ -26,7 +26,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        CGRect bgFrame = CGRectInset(self.bounds, 5.0f, 5.0f);
+        CGRect bgFrame = CGRectInset(self.bounds, 0.0f, 0.0f);
         UIView *bgView = [[[UIView alloc] initWithFrame:bgFrame] autorelease];
         bgView.layer.borderColor = [UIColor blackColor].CGColor;
         bgView.layer.borderWidth = 2.0f;

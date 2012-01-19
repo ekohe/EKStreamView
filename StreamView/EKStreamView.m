@@ -59,7 +59,7 @@
 
 @implementation EKStreamView
 
-@synthesize delegate, visibleCellInfo, cellCache;
+@synthesize delegate, visibleCellInfo, cellCache, cellPadding, columnPadding;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -105,7 +105,7 @@
     if ([delegate respondsToSelector:@selector(headerForStreamView:)]) {
         headerView = [[delegate headerForStreamView:self] retain];
         CGRect f = headerView.frame;
-        f.origin = CGPointZero;
+        f.origin = CGPointMake(columnPadding, cellPadding);
         headerView.frame = f;
 
         [self addSubview:headerView];
@@ -133,12 +133,12 @@
     }
     
     
-    CGFloat columnWidth = self.frame.size.width / numberOfColumns;
-    CGFloat cellHeight = headerView ? headerView.frame.size.height : 0.0f;
+    CGFloat columnWidth = (self.frame.size.width - (columnPadding * (numberOfColumns + 1))) / numberOfColumns ;
+    CGFloat cellHeight = headerView ? headerView.frame.size.height + cellPadding : cellPadding;
     for (int i = 0; i < numberOfColumns; i++) {
         [cellHeightsByColumn addObject:[NSMutableArray arrayWithCapacity:20]];
         [rectsForCells addObject:[NSMutableArray arrayWithCapacity:20]];
-        cellX[i] = (i == 0 ? 0.0f : cellX[i - 1] + columnWidth);
+        cellX[i] = (i == 0 ? columnPadding : cellX[i - 1] + columnWidth + columnPadding);
         columnHeights[i] = cellHeight;
     }
 
@@ -157,11 +157,11 @@
         [cellHeightsInCol addObject:[NSNumber numberWithFloat:height]];
         NSMutableArray *rectsForCellsInCol = [rectsForCells objectAtIndex:shortestCol];
         EKStreamViewCellInfo *info = [[EKStreamViewCellInfo new] autorelease];
-        info.frame = CGRectMake(cellX[shortestCol], columnHeights[shortestCol], columnWidth, height);
+        info.frame = CGRectMake(cellX[shortestCol], columnHeights[shortestCol] + cellPadding, columnWidth, height);
         info.index = i;
         [rectsForCellsInCol addObject:info];
         
-        columnHeights[shortestCol] += height;
+        columnHeights[shortestCol] += height + cellPadding;
     }
     
     
@@ -175,18 +175,20 @@
         [self layoutCellWithCellInfo:info];
     }
     
-    CGFloat maxHeight = 0.0f;
+    CGFloat maxHeight = 0;
     for (int i = 0; i < numberOfColumns; i++) {
         if (columnHeights[i] > maxHeight)
             maxHeight = columnHeights[i];
     }
     
+    maxHeight += cellPadding;
+    
     if (footerView) {
         CGRect f = footerView.frame;
-        f.origin = CGPointMake(0.0f, maxHeight);
+        f.origin = CGPointMake(columnPadding, maxHeight);
         footerView.frame = f;
         
-        maxHeight += footerView.frame.size.height;
+        maxHeight += footerView.frame.size.height + cellPadding;
     }
     
     self.contentSize = CGSizeMake(0.0f, maxHeight);
