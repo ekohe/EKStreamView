@@ -35,7 +35,7 @@
 
 - (NSInteger)numberOfCellsInStreamView:(EKStreamView *)streamView;
 - (NSInteger)numberOfColumnsInStreamView:(EKStreamView *)streamView;
-- (UIView<EKResusableCell> *)cellForStreamView:(EKStreamView *)streamView atIndex:(NSInteger)index;
+- (UIView<EKResusableCell> *)streamView:(EKStreamView *)streamView cellAtIndex:(NSInteger)index;
 - (CGFloat)streamView:(EKStreamView *)streamView heightForCellAtIndex:(NSInteger)index;
 
 @optional

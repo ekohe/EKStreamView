@@ -70,7 +70,7 @@ static int MaxPage = 3;
     return 3;
 }
 
-- (UIView *)cellForStreamView:(EKStreamView *)streamView atIndex:(NSInteger)index
+- (UIView *)streamView:(EKStreamView *)streamView cellAtIndex:(NSInteger)index
 {
     static NSString *CellID1 = @"MyCell1";
     static NSString *CellID2 = @"MyCell2";

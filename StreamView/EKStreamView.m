@@ -239,7 +239,7 @@
 
 - (void)layoutCellWithCellInfo:(EKStreamViewCellInfo *)info
 {
-    UIView<EKResusableCell> *cell = [delegate cellForStreamView:self atIndex:info.index];
+    UIView<EKResusableCell> *cell = [delegate streamView:self cellAtIndex:info.index];
     cell.frame = info.frame;
     info.cell = cell;
     [self addSubview:cell];
