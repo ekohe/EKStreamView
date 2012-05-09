@@ -14,12 +14,6 @@ static int MaxPage = 1;
 @implementation EKViewController
 @synthesize stream;
 
-- (void)dealloc
-{
-    [randomHeights release];
-    [stream release];
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -34,7 +28,6 @@ static int MaxPage = 1;
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    [randomHeights release];
     randomHeights = [[NSMutableArray alloc] initWithCapacity:100];
     for (int i = 0; i < 100; i++) {
         CGFloat h = arc4random() % 200 + 50.f;
@@ -86,7 +79,7 @@ static int MaxPage = 1;
     cell = (MyCell *)[streamView dequeueReusableCellWithIdentifier:CellID];
     
     if (cell == nil) {
-        cell = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, 100, 100)] autorelease];
+        cell = [[MyCell alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
         cell.reuseIdentifier = CellID;
         if (redCell) cell.label.textColor = [UIColor redColor];
     }
@@ -103,7 +96,7 @@ static int MaxPage = 1;
 
 - (UIView *)headerForStreamView:(EKStreamView *)streamView
 {
-    MyCell *header = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - stream.columnPadding * 2, 60)] autorelease];
+    MyCell *header = [[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - stream.columnPadding * 2, 60)];
     header.label.text = @"This is the header";
     
     return header;
@@ -112,7 +105,7 @@ static int MaxPage = 1;
 - (UIView *)footerForStreamView:(EKStreamView *)streamView
 {
     if (page <= MaxPage) {
-        MyCell *footer = [[[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - stream.columnPadding * 2, 60)] autorelease];
+        MyCell *footer = [[MyCell alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width - stream.columnPadding * 2, 60)];
         footer.label.text = @"This is the footer";
         
         return footer;

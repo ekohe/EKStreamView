@@ -15,6 +15,6 @@
     int page;
 }
 
-@property (retain, nonatomic) IBOutlet EKStreamView *stream;
+@property ( nonatomic) IBOutlet EKStreamView *stream;
 
 @end

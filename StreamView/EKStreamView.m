@@ -26,7 +26,7 @@
 
 - (NSString *)description
 {
-    return [NSString stringWithFormat:@"<EKWaterfallCellInfo: index: %d>", index];
+    return [NSString stringWithFormat:@"<%@: index: %d>",NSStringFromClass([self class]), index];
 }
 
 @end
@@ -39,8 +39,8 @@
 - (NSSet *)getVisibleCellInfo;
 - (void)layoutCellWithCellInfo:(EKStreamViewCellInfo *)info;
 
-@property (nonatomic, retain) NSSet *visibleCellInfo;
-@property (nonatomic, retain) NSMutableDictionary *cellCache;
+@property (nonatomic) NSSet *visibleCellInfo;
+@property (nonatomic) NSMutableDictionary *cellCache;
 
 @end
 
@@ -79,19 +79,6 @@
     return self;
 }
 
-- (void)dealloc
-{
-    [[super delegate] release];
-    [cellHeightsByIndex release];
-    [cellHeightsByColumn release];
-    [rectsForCells release];
-    [visibleCellInfo release];
-    [cellCache release];
-    
-    [headerView release];
-    [footerView release];
-    [super dealloc];
-}
 
 - (void)reloadData
 {
@@ -107,7 +94,7 @@
     }
     
     if ([delegate respondsToSelector:@selector(headerForStreamView:)]) {
-        headerView = [[delegate headerForStreamView:self] retain];
+        headerView = [delegate headerForStreamView:self];
         CGRect f = headerView.frame;
         f.origin = CGPointMake(columnPadding, cellPadding);
         headerView.frame = f;
@@ -118,7 +105,7 @@
     }
     
     if ([delegate respondsToSelector:@selector(footerForStreamView:)]) {
-        footerView = [[delegate footerForStreamView:self] retain];
+        footerView = [delegate footerForStreamView:self];
         [self addSubview:footerView];
     } else {
         footerView = nil;
@@ -161,7 +148,7 @@
         NSMutableArray *cellHeightsInCol = [cellHeightsByColumn objectAtIndex:shortestCol];
         [cellHeightsInCol addObject:[NSNumber numberWithFloat:height]];
         NSMutableArray *rectsForCellsInCol = [rectsForCells objectAtIndex:shortestCol];
-        EKStreamViewCellInfo *info = [[EKStreamViewCellInfo new] autorelease];
+        EKStreamViewCellInfo *info = [EKStreamViewCellInfo new];
         info.frame = CGRectMake(cellX[shortestCol], columnHeights[shortestCol] + cellPadding, columnWidth, height);
         info.index = i;
         [rectsForCellsInCol addObject:info];
@@ -171,8 +158,7 @@
     
     
     // determine the visible cells' range
-    [visibleCellInfo release];
-    visibleCellInfo = [[self getVisibleCellInfo] retain];
+    visibleCellInfo = [self getVisibleCellInfo];
     
     // draw the visible cells
     
@@ -208,7 +194,7 @@
     NSMutableArray *cellArray = [cellCache objectForKey:identifier];
     id<EKResusableCell> cell = nil;
     if ([cellArray count] > 0) {
-        cell = [[[cellArray lastObject] retain] autorelease];
+        cell = [cellArray lastObject];
         [cellArray removeLastObject];
     } 
     
@@ -260,7 +246,7 @@
 
 - (void)setup
 {
-    EKStreamViewUIScrollViewDelegate *delegateObj = [EKStreamViewUIScrollViewDelegate new];
+    delegateObj = [EKStreamViewUIScrollViewDelegate new];
     delegateObj.streamView = self;
     [super setDelegate:delegateObj];
     

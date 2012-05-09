@@ -14,12 +14,6 @@
 @synthesize label, reuseIdentifier;
 
 
-- (void)dealloc
-{
-    [label release];
-    [reuseIdentifier release];
-    [super dealloc];
-}
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -27,7 +21,7 @@
     if (self) {
         // Initialization code
         CGRect bgFrame = CGRectInset(self.bounds, 0.0f, 0.0f);
-        UIView *bgView = [[[UIView alloc] initWithFrame:bgFrame] autorelease];
+        UIView *bgView = [[UIView alloc] initWithFrame:bgFrame];
         bgView.layer.borderColor = [UIColor blackColor].CGColor;
         bgView.layer.borderWidth = 2.0f;
         [self addSubview:bgView];
