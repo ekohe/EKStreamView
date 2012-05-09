@@ -121,7 +121,7 @@
     NSInteger numberOfCells = [delegate numberOfCellsInStreamView:self];
     CGFloat *columnHeights = calloc(numberOfColumns, sizeof(CGFloat));
     CGFloat *cellX = calloc(numberOfCells, sizeof(CGFloat));
-    if (columnHeights == NULL && cellX == NULL) {
+    if (columnHeights == NULL || cellX == NULL) {
         [NSException raise:NSMallocException format:@"Allocating memory failed."];
     }
     
