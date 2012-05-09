@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4527EDB6155A4AA10000F8CC /* EKStreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4527EDB5155A4AA10000F8CC /* EKStreamView.m */; };
 		459542D014C55616002BFF69 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542CF14C55616002BFF69 /* UIKit.framework */; };
 		459542D214C55616002BFF69 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542D114C55616002BFF69 /* Foundation.framework */; };
 		459542D414C55616002BFF69 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 459542D314C55616002BFF69 /* CoreGraphics.framework */; };
@@ -22,7 +23,6 @@
 		4595431114C55661002BFF69 /* EKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595430B14C55661002BFF69 /* EKViewController.m */; };
 		4595431214C55661002BFF69 /* EKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4595430C14C55661002BFF69 /* EKViewController.xib */; };
 		4595431314C55661002BFF69 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595430E14C55661002BFF69 /* MyCell.m */; };
-		4595431414C55661002BFF69 /* EKStreamView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595431014C55661002BFF69 /* EKStreamView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4527EDB4155A4AA10000F8CC /* EKStreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKStreamView.h; sourceTree = "<group>"; };
+		4527EDB5155A4AA10000F8CC /* EKStreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKStreamView.m; sourceTree = "<group>"; };
 		459542CB14C55616002BFF69 /* StreamView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StreamView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		459542CF14C55616002BFF69 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		459542D114C55616002BFF69 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -58,8 +60,6 @@
 		4595430C14C55661002BFF69 /* EKViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EKViewController.xib; sourceTree = "<group>"; };
 		4595430D14C55661002BFF69 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
 		4595430E14C55661002BFF69 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
-		4595430F14C55661002BFF69 /* EKStreamView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKStreamView.h; sourceTree = "<group>"; };
-		4595431014C55661002BFF69 /* EKStreamView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKStreamView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,8 +128,8 @@
 				4595430C14C55661002BFF69 /* EKViewController.xib */,
 				4595430D14C55661002BFF69 /* MyCell.h */,
 				4595430E14C55661002BFF69 /* MyCell.m */,
-				4595430F14C55661002BFF69 /* EKStreamView.h */,
-				4595431014C55661002BFF69 /* EKStreamView.m */,
+				4527EDB4155A4AA10000F8CC /* EKStreamView.h */,
+				4527EDB5155A4AA10000F8CC /* EKStreamView.m */,
 				459542D614C55616002BFF69 /* Supporting Files */,
 			);
 			path = StreamView;
@@ -276,7 +276,7 @@
 				459542E014C55616002BFF69 /* EKAppDelegate.m in Sources */,
 				4595431114C55661002BFF69 /* EKViewController.m in Sources */,
 				4595431314C55661002BFF69 /* MyCell.m in Sources */,
-				4595431414C55661002BFF69 /* EKStreamView.m in Sources */,
+				4527EDB6155A4AA10000F8CC /* EKStreamView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +438,7 @@
 				4595430014C55616002BFF69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4595430114C55616002BFF69 /* Build configuration list for PBXNativeTarget "StreamViewTests" */ = {
 			isa = XCConfigurationList;
@@ -446,6 +447,7 @@
 				4595430314C55616002BFF69 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

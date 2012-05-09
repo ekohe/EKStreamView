@@ -102,12 +102,16 @@
     [headerView removeFromSuperview];
     [footerView removeFromSuperview];
     
+    for (EKStreamViewCellInfo *cellInfo in visibleCellInfo) {
+        [cellInfo.cell removeFromSuperview];
+    }
+    
     if ([delegate respondsToSelector:@selector(headerForStreamView:)]) {
         headerView = [[delegate headerForStreamView:self] retain];
         CGRect f = headerView.frame;
         f.origin = CGPointMake(columnPadding, cellPadding);
         headerView.frame = f;
-
+        
         [self addSubview:headerView];
     } else {
         headerView = nil;
@@ -122,6 +126,8 @@
     
     // calculate height for all cells
     NSInteger numberOfColumns = [delegate numberOfColumnsInStreamView:self];
+    columnWidth = (self.frame.size.width - (numberOfColumns + 1) * self.columnPadding) / numberOfColumns;
+    
     if (numberOfColumns < 1)
         [NSException raise:NSInvalidArgumentException format:@"The number of columns must be equal or greater than 1!"];
     
@@ -133,7 +139,6 @@
     }
     
     
-    CGFloat columnWidth = (self.frame.size.width - (columnPadding * (numberOfColumns + 1))) / numberOfColumns ;
     CGFloat cellHeight = headerView ? headerView.frame.size.height + cellPadding : cellPadding;
     for (int i = 0; i < numberOfColumns; i++) {
         [cellHeightsByColumn addObject:[NSMutableArray arrayWithCapacity:20]];
@@ -141,7 +146,7 @@
         cellX[i] = (i == 0 ? columnPadding : cellX[i - 1] + columnWidth + columnPadding);
         columnHeights[i] = cellHeight;
     }
-
+    
     for (int i = 0; i < numberOfCells; i++) {
         CGFloat height = [delegate streamView:self heightForCellAtIndex:i];
         [cellHeightsByIndex addObject:[NSNumber numberWithFloat:height]];
@@ -210,6 +215,12 @@
     return cell;
 }
 
+- (CGFloat)columnWidth
+{
+    NSInteger numColumns = [delegate numberOfColumnsInStreamView:self];
+    return (self.frame.size.width - (numColumns + 1) * self.columnPadding) / numColumns;
+}
+
 #pragma mark - Private Methods
 
 - (NSSet *)getVisibleCellInfo
@@ -218,7 +229,7 @@
     CGFloat offsetBottom = offsetTop + self.frame.size.height;
     NSMutableSet *ret = [NSMutableSet setWithCapacity:10];
     
-
+    
     for (NSMutableArray *rectsForCellsInCol in rectsForCells) {
         for (int i = 0, c = [rectsForCellsInCol count]; i < c; i++) {
             EKStreamViewCellInfo *info = [rectsForCellsInCol objectAtIndex:i];
@@ -256,7 +267,7 @@
     cellHeightsByIndex = [[NSMutableArray alloc] initWithCapacity:30];
     cellHeightsByColumn = [[NSMutableArray alloc] initWithCapacity:5];
     rectsForCells = [[NSMutableArray alloc] initWithCapacity:5];
-    cellCache = [[NSMutableDictionary alloc] initWithCapacity:5];
+    cellCache = [[NSMutableDictionary alloc] initWithCapacity:20];
 }
 
 @end

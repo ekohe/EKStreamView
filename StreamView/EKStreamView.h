@@ -64,11 +64,14 @@
     NSMutableDictionary *cellCache; // reuseIdentifier => NSMutableArray
     NSSet *visibleCellInfo;
     UIView *headerView, *footerView;
+    CGFloat columnWidth;
 }
 
 @property (nonatomic, assign) id<EKStreamViewDelegate> delegate;
 @property (nonatomic, assign) CGFloat columnPadding;
 @property (nonatomic, assign) CGFloat cellPadding;
+
+@property (nonatomic, readonly) CGFloat columnWidth;
 
 - (id<EKResusableCell>)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 - (void)reloadData;
