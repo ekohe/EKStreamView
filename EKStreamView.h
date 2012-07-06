@@ -59,7 +59,7 @@
     NSMutableArray
     *cellHeightsByIndex,    // 1d
     *cellHeightsByColumn,   // 2d
-    *rectsForCells;         // 2d EKWaterfallCellInfo
+    *rectsForCells;         // 2d EKStreamViewCellInfo
     
     NSMutableDictionary *cellCache; // reuseIdentifier => NSMutableArray
     NSSet *visibleCellInfo;
