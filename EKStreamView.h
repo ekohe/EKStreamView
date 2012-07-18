@@ -63,7 +63,6 @@
     
     NSMutableDictionary *cellCache; // reuseIdentifier => NSMutableArray
     NSSet *visibleCellInfo;
-    UIView *headerView, *footerView;
     CGFloat columnWidth;
     EKStreamViewUIScrollViewDelegate *delegateObj;
 }
@@ -73,6 +72,9 @@
 @property (nonatomic, assign) CGFloat cellPadding;
 
 @property (nonatomic, readonly) CGFloat columnWidth;
+
+@property (nonatomic, readonly) UIView *headerView, *footerView;
+@property (nonatomic, readonly) UIView *contentView;
 
 - (id<EKResusableCell>)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 - (void)reloadData;

@@ -60,6 +60,7 @@
 @implementation EKStreamView
 
 @synthesize delegate, visibleCellInfo, cellCache, cellPadding, columnPadding;
+@synthesize headerView, footerView, contentView;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -99,21 +100,21 @@
         f.origin = CGPointMake(columnPadding, cellPadding);
         headerView.frame = f;
         
-        [self addSubview:headerView];
+        [contentView addSubview:headerView];
     } else {
         headerView = nil;
     }
     
     if ([delegate respondsToSelector:@selector(footerForStreamView:)]) {
         footerView = [delegate footerForStreamView:self];
-        [self addSubview:footerView];
+        [contentView addSubview:footerView];
     } else {
         footerView = nil;
     }
     
     // calculate height for all cells
     NSInteger numberOfColumns = [delegate numberOfColumnsInStreamView:self];
-    columnWidth = (self.frame.size.width - (numberOfColumns + 1) * self.columnPadding) / numberOfColumns;
+    columnWidth = (self.bounds.size.width - (numberOfColumns + 1) * self.columnPadding) / numberOfColumns;
     
     if (numberOfColumns < 1)
         [NSException raise:NSInvalidArgumentException format:@"The number of columns must be equal or greater than 1!"];
@@ -126,7 +127,7 @@
     }
     
     
-    CGFloat cellHeight = headerView ? headerView.frame.size.height + cellPadding : cellPadding;
+    CGFloat cellHeight = headerView ? headerView.bounds.size.height + cellPadding : cellPadding;
     for (int i = 0; i < numberOfColumns; i++) {
         [cellHeightsByColumn addObject:[NSMutableArray arrayWithCapacity:20]];
         [rectsForCells addObject:[NSMutableArray arrayWithCapacity:20]];
@@ -179,10 +180,15 @@
         f.origin = CGPointMake(columnPadding, maxHeight);
         footerView.frame = f;
         
-        maxHeight += footerView.frame.size.height + cellPadding;
+        maxHeight += footerView.bounds.size.height + cellPadding;
     }
     
     self.contentSize = CGSizeMake(0.0f, maxHeight);
+    CGRect f = contentView.frame;
+    f.size.height = maxHeight;
+    f.size.width = self.bounds.size.width;
+    contentView.frame = f;
+
     
     
     free(columnHeights);
@@ -204,7 +210,7 @@
 - (CGFloat)columnWidth
 {
     NSInteger numColumns = [delegate numberOfColumnsInStreamView:self];
-    return (self.frame.size.width - (numColumns + 1) * self.columnPadding) / numColumns;
+    return (self.bounds.size.width - (numColumns + 1) * self.columnPadding) / numColumns;
 }
 
 #pragma mark - Private Methods
@@ -212,7 +218,7 @@
 - (NSSet *)getVisibleCellInfo
 {
     CGFloat offsetTop = self.contentOffset.y;
-    CGFloat offsetBottom = offsetTop + self.frame.size.height;
+    CGFloat offsetBottom = offsetTop + self.bounds.size.height;
     NSMutableSet *ret = [NSMutableSet setWithCapacity:10];
     
     
@@ -241,7 +247,7 @@
     UIView<EKResusableCell> *cell = [delegate streamView:self cellAtIndex:info.index];
     cell.frame = info.frame;
     info.cell = cell;
-    [self addSubview:cell];
+    [contentView addSubview:cell];
 }
 
 - (void)setup
@@ -254,6 +260,10 @@
     cellHeightsByColumn = [[NSMutableArray alloc] initWithCapacity:5];
     rectsForCells = [[NSMutableArray alloc] initWithCapacity:5];
     cellCache = [[NSMutableDictionary alloc] initWithCapacity:20];
+    
+    contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height)];
+    contentView.autoresizesSubviews = NO;
+    [self addSubview:contentView];
 }
 
 @end
