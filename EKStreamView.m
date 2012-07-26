@@ -249,6 +249,9 @@
     UIView<EKResusableCell> *cell = [delegate streamView:self cellAtIndex:info.index];
     cell.frame = info.frame;
     info.cell = cell;
+    if ([delegate respondsToSelector:@selector(streamView:willDisplayCell:forIndex:)]) {
+        [delegate streamView:self willDisplayCell:cell forIndex:info.index];
+    }
     [contentView addSubview:cell];
 }
 

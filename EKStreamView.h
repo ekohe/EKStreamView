@@ -42,7 +42,7 @@
 
 - (UIView *)headerForStreamView:(EKStreamView *)streamView;
 - (UIView *)footerForStreamView:(EKStreamView *)streamView;
-
+- (void)streamView:(EKStreamView *)streamView willDisplayCell:(UIView<EKResusableCell> *)cell forIndex:(NSInteger)index;
 @optional
 
 @end
