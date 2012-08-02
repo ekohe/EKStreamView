@@ -86,6 +86,7 @@
     [cellHeightsByIndex removeAllObjects];
     [cellHeightsByColumn removeAllObjects];
     [rectsForCells removeAllObjects];
+    [infoForCells removeAllObjects];
     [cellCache removeAllObjects];
     [headerView removeFromSuperview];
     [footerView removeFromSuperview];
@@ -153,6 +154,7 @@
         info.frame = CGRectMake(cellX[shortestCol], columnHeights[shortestCol] + cellPadding, columnWidth, height);
         info.index = i;
         [rectsForCellsInCol addObject:info];
+        [infoForCells addObject:info];
         
         columnHeights[shortestCol] += height + cellPadding;
     }
@@ -247,6 +249,9 @@
     UIView<EKResusableCell> *cell = [delegate streamView:self cellAtIndex:info.index];
     cell.frame = info.frame;
     info.cell = cell;
+    if ([delegate respondsToSelector:@selector(streamView:willDisplayCell:forIndex:)]) {
+        [delegate streamView:self willDisplayCell:cell forIndex:info.index];
+    }
     [contentView addSubview:cell];
 }
 
@@ -260,10 +265,39 @@
     cellHeightsByColumn = [[NSMutableArray alloc] initWithCapacity:5];
     rectsForCells = [[NSMutableArray alloc] initWithCapacity:5];
     cellCache = [[NSMutableDictionary alloc] initWithCapacity:20];
+    infoForCells = [[NSMutableArray alloc] initWithCapacity:30];
     
     contentView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.contentSize.width, self.contentSize.height)];
     contentView.autoresizesSubviews = NO;
     [self addSubview:contentView];
+}
+
+- (void)scrollToCellAtIndex:(NSUInteger)index atScrollPosition:(EKStreamViewScrollPosition)scrollPosition animated:(BOOL)animated
+{
+    if (scrollPosition == EKStreamViewScrollPositionNone) {
+        return;
+    }
+    EKStreamViewCellInfo *cellInfo = [infoForCells objectAtIndex:index];
+    CGFloat cellPositionY = cellInfo.frame.origin.y;
+    CGFloat cellHeight = cellInfo.frame.size.height;
+    CGFloat viewHeight = self.frame.size.height;
+    CGFloat targetOffsetY = self.contentOffset.y;
+    CGFloat minOffsetY = 0.0f;
+    CGFloat maxOffsetY = self.contentSize.height - self.frame.size.height;
+    switch (scrollPosition) {
+        case EKStreamViewScrollPositionNone:
+            break;
+        case EKStreamViewScrollPositionTop:
+            targetOffsetY = MIN(maxOffsetY, MAX(minOffsetY, cellPositionY));
+            break;
+        case EKStreamViewScrollPositionMiddle:
+            targetOffsetY = MIN(maxOffsetY, MAX(minOffsetY, cellPositionY - (viewHeight - cellHeight) * 0.5));
+            break;
+        case EKStreamViewScrollPositionBottom:
+            targetOffsetY = MIN(maxOffsetY, MAX(minOffsetY, cellPositionY - (viewHeight - cellHeight)));
+            break;
+    }
+    [self setContentOffset:CGPointMake(0.0f, targetOffsetY) animated:animated];
 }
 
 @end
