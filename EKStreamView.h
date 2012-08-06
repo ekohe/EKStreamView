@@ -42,7 +42,7 @@
 
 - (UIView *)headerForStreamView:(EKStreamView *)streamView;
 - (UIView *)footerForStreamView:(EKStreamView *)streamView;
-
+- (void)streamView:(EKStreamView *)streamView willDisplayCell:(UIView<EKResusableCell> *)cell forIndex:(NSInteger)index;
 @optional
 
 @end
@@ -53,13 +53,20 @@
 
 @end
 
+typedef enum {
+    EKStreamViewScrollPositionNone,
+    EKStreamViewScrollPositionTop,
+    EKStreamViewScrollPositionMiddle,
+    EKStreamViewScrollPositionBottom
+} EKStreamViewScrollPosition;
 
 @interface EKStreamView : UIScrollView
 {
     NSMutableArray
     *cellHeightsByIndex,    // 1d
     *cellHeightsByColumn,   // 2d
-    *rectsForCells;         // 2d EKStreamViewCellInfo
+    *rectsForCells,         // 2d EKStreamViewCellInfo
+    *infoForCells;          // 1d
     
     NSMutableDictionary *cellCache; // reuseIdentifier => NSMutableArray
     NSSet *visibleCellInfo;
@@ -78,5 +85,5 @@
 
 - (id<EKResusableCell>)dequeueReusableCellWithIdentifier:(NSString *)identifier;
 - (void)reloadData;
-
+- (void)scrollToCellAtIndex:(NSUInteger)index atScrollPosition:(EKStreamViewScrollPosition)scrollPosition animated:(BOOL)animated;
 @end
