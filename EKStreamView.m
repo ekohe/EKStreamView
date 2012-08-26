@@ -143,7 +143,7 @@
         NSUInteger shortestCol = 0;
         for (int j = 1; j < numberOfColumns; j++) {
             
-            if (columnHeights[j] < columnHeights[shortestCol])
+            if (columnHeights[j] < columnHeights[shortestCol] - 0.5f)
                 shortestCol = j;
         }
         
