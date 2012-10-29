@@ -1,4 +1,4 @@
-Like `UITableView`, `EKStreamView` renders many cells having almost the same structure by resuing the cell views whenever possible. It's fast even you have hundreds of cells since only a small number of cells are actually created.
+`EKStreamView` renders a number of columns containing multiple cells by reusing the cell views whenever possible, similar to `UITableView`. It's fast even you have hundreds of cells since only a small number of cells are actually created.
 
 ![EKStreamView](https://github.com/ekohe/EKStreamView/raw/master/screenshot.png "Screenshot")
 
