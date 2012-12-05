@@ -8,6 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    ScrollDirectionNone,
+    ScrollDirectionRight,
+    ScrollDirectionLeft,
+    ScrollDirectionUp,
+    ScrollDirectionDown,
+    ScrollDirectionCrazy,
+} ScrollDirection;
+
+
 @protocol EKResusableCell <NSObject>
 
 @property (nonatomic, retain) NSString *reuseIdentifier;
@@ -39,7 +49,9 @@
 - (CGFloat)streamView:(EKStreamView *)streamView heightForCellAtIndex:(NSInteger)index;
 
 @optional
-
+- (void)didSelectCellInStreamView:(EKStreamView*)streamView celAtIndex:(NSInteger)index withInfo:(EKStreamViewCellInfo*)info;
+- (void)didSelectCellHeaderInStreamView:(EKStreamView*)streamView;
+- (void)didSelectCellFooterInStreamView:(EKStreamView*)streamView;
 - (UIView *)headerForStreamView:(EKStreamView *)streamView;
 - (UIView *)footerForStreamView:(EKStreamView *)streamView;
 - (void)streamView:(EKStreamView *)streamView willDisplayCell:(UIView<EKResusableCell> *)cell forIndex:(NSInteger)index;

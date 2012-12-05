@@ -16,5 +16,5 @@
 }
 
 @property ( nonatomic) IBOutlet EKStreamView *stream;
-
+@property (nonatomic,assign)float lastContentOffsetY;
 @end
