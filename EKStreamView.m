@@ -122,7 +122,7 @@
     
     NSInteger numberOfCells = [delegate numberOfCellsInStreamView:self];
     CGFloat *columnHeights = calloc(numberOfColumns, sizeof(CGFloat));
-    CGFloat *cellX = calloc(numberOfCells, sizeof(CGFloat));
+    CGFloat *cellX = calloc(numberOfColumns, sizeof(CGFloat));
     if (columnHeights == NULL || cellX == NULL) {
         [NSException raise:NSMallocException format:@"Allocating memory failed."];
     }
@@ -289,7 +289,20 @@
     }
     else {
         
-        for (EKStreamViewCellInfo *info in infoForCells) {
+        NSInteger numberOfColumn = [self.delegate numberOfColumnsInStreamView:self];
+        NSInteger rightX = columnWidth;
+        NSInteger selectedColumn = 0;
+        for (selectedColumn = 0; selectedColumn < numberOfColumn; selectedColumn++) {
+            if (0 <= location.x && location.x < rightX) {
+                break;
+            }
+            rightX += (columnPadding + columnWidth);
+        }
+        if (selectedColumn >= numberOfColumn) {
+            return;
+        }
+        
+        for (EKStreamViewCellInfo *info in [rectsForCells objectAtIndex:selectedColumn]) {
             if (CGRectContainsPoint(info.frame, location)) {
                 if ([self.delegate respondsToSelector:@selector(didSelectCellInStreamView:celAtIndex:withInfo:)]) {
                     [self.delegate didSelectCellInStreamView:self celAtIndex:info.index withInfo:info];
