@@ -9,6 +9,42 @@
 #import "EKViewController.h"
 #import "MyCell.h"
 
+@interface CHDemoView : UIView
+- (void)singleTapAction:(UITapGestureRecognizer*)ges;
+@property (nonatomic,assign)CGRect originRect;
+@end
+
+
+@implementation CHDemoView
+@synthesize originRect;
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.userInteractionEnabled = YES;
+        UITapGestureRecognizer *ges = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(singleTapAction:)];
+        ges.numberOfTapsRequired = 1;
+        ges.numberOfTouchesRequired = 1;
+        [self addGestureRecognizer:ges];
+        
+    }
+    return self;
+}
+
+- (void)singleTapAction:(UITapGestureRecognizer *)ges {
+    if (ges.state == UIGestureRecognizerStateEnded) {
+        [UIView animateWithDuration:0.5 animations:^{
+            self.frame = self.originRect;
+        } completion:^(BOOL isFinished){
+            [self removeFromSuperview];
+        }];
+        
+        
+    }
+}
+
+@end
+
 static int MaxPage = 1;
 
 @implementation EKViewController
@@ -113,6 +149,67 @@ static int MaxPage = 1;
         return nil;
     }
 }
+
+- (void)didSelectCellInStreamView:(EKStreamView*)streamView celAtIndex:(NSInteger)index withInfo:(EKStreamViewCellInfo*)info {
+    NSLog(@"didSelectCellInStreamView:%d",index);
+    
+    UIWindow *window = [[[UIApplication sharedApplication] delegate] window];
+    CGRect imgFrame = [window convertRect:info.frame fromView:stream];
+    
+    CHDemoView *blackView = [[CHDemoView alloc] initWithFrame:imgFrame];
+    blackView.backgroundColor = [UIColor blackColor];
+    blackView.originRect = imgFrame;
+    [window addSubview:blackView];
+    
+   
+    [UIView animateWithDuration:0.5
+                     animations:^{
+                         blackView.frame = window.frame;
+                     }
+                     completion:^(BOOL finished){
+                         
+                     }];
+    
+    
+}
+
+
+- (void)didSelectCellHeaderInStreamView:(EKStreamView*)streamView {
+    NSLog(@"didSelectCellHeaderInStreamView");
+}
+
+- (void)didSelectCellFooterInStreamView:(EKStreamView*)streamView {
+    NSLog(@"didSelectCellHeaderInStreamView");
+}
+
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    ScrollDirection scrollDirection;
+    
+    if (scrollView.contentOffset.y >= 0 && scrollView.contentOffset.y <= scrollView.contentSize.height - self.view.frame.size.height) {
+        if (self.lastContentOffsetY > scrollView.contentOffset.y) {
+            scrollDirection = ScrollDirectionUp;
+            //Show navigation bar
+            if (self.navigationController.navigationBarHidden) {
+                [self.navigationController setNavigationBarHidden:NO animated:YES];
+            }
+            
+        }
+        else if (self.lastContentOffsetY < scrollView.contentOffset.y) {
+            scrollDirection = ScrollDirectionDown;
+            if (!self.navigationController.navigationBarHidden) {
+                [self.navigationController setNavigationBarHidden:YES animated:YES];
+            }
+            
+        }
+        
+        self.lastContentOffsetY = scrollView.contentOffset.y;
+    }
+    
+    
+}
+
 
 //- (void)scrollViewDidScroll:(UIScrollView *)scrollView
 //{

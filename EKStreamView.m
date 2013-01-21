@@ -272,6 +272,47 @@
     [self addSubview:contentView];
 }
 
+
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    UITouch *touch = [touches anyObject];
+    CGPoint location = [touch locationInView:self];
+    if (self.footerView && CGRectContainsPoint([self.footerView frame], location)) {
+        if ([self.delegate respondsToSelector:@selector(didSelectCellFooterInStreamView:)]) {
+            [self.delegate didSelectCellFooterInStreamView:self];
+        }
+    }
+    else if (self.headerView && CGRectContainsPoint([self.headerView frame], location)) {
+        if ([self.delegate respondsToSelector:@selector(didSelectCellHeaderInStreamView:)]) {
+            [self.delegate didSelectCellHeaderInStreamView:self];
+        }
+    }
+    else {
+        
+        NSInteger numberOfColumn = [self.delegate numberOfColumnsInStreamView:self];
+        NSInteger rightX = columnWidth;
+        NSInteger selectedColumn = 0;
+        for (selectedColumn = 0; selectedColumn < numberOfColumn; selectedColumn++) {
+            if (0 <= location.x && location.x < rightX) {
+                break;
+            }
+            rightX += (columnPadding + columnWidth);
+        }
+        if (selectedColumn >= numberOfColumn) {
+            return;
+        }
+        
+        for (EKStreamViewCellInfo *info in [rectsForCells objectAtIndex:selectedColumn]) {
+            if (CGRectContainsPoint(info.frame, location)) {
+                if ([self.delegate respondsToSelector:@selector(didSelectCellInStreamView:celAtIndex:withInfo:)]) {
+                    [self.delegate didSelectCellInStreamView:self celAtIndex:info.index withInfo:info];
+                }
+                break;
+            }
+        }
+    }
+}
+
 - (void)scrollToCellAtIndex:(NSUInteger)index atScrollPosition:(EKStreamViewScrollPosition)scrollPosition animated:(BOOL)animated
 {
     if (scrollPosition == EKStreamViewScrollPositionNone) {

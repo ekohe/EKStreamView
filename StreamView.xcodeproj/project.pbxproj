@@ -23,6 +23,9 @@
 		4595431114C55661002BFF69 /* EKViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595430B14C55661002BFF69 /* EKViewController.m */; };
 		4595431214C55661002BFF69 /* EKViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4595430C14C55661002BFF69 /* EKViewController.xib */; };
 		4595431314C55661002BFF69 /* MyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4595430E14C55661002BFF69 /* MyCell.m */; };
+		77F5013B166F31A3004CEC28 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F50138166F31A3004CEC28 /* Default-568h@2x.png */; };
+		77F5013C166F31A3004CEC28 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F50139166F31A3004CEC28 /* Default.png */; };
+		77F5013D166F31A3004CEC28 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77F5013A166F31A3004CEC28 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -60,6 +63,9 @@
 		4595430C14C55661002BFF69 /* EKViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EKViewController.xib; sourceTree = "<group>"; };
 		4595430D14C55661002BFF69 /* MyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCell.h; sourceTree = "<group>"; };
 		4595430E14C55661002BFF69 /* MyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCell.m; sourceTree = "<group>"; };
+		77F50138166F31A3004CEC28 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		77F50139166F31A3004CEC28 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		77F5013A166F31A3004CEC28 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +96,9 @@
 		459542C014C55616002BFF69 = {
 			isa = PBXGroup;
 			children = (
+				77F50138166F31A3004CEC28 /* Default-568h@2x.png */,
+				77F50139166F31A3004CEC28 /* Default.png */,
+				77F5013A166F31A3004CEC28 /* Default@2x.png */,
 				459542D514C55616002BFF69 /* StreamView */,
 				459542F314C55616002BFF69 /* StreamViewTests */,
 				459542CE14C55616002BFF69 /* Frameworks */,
@@ -238,6 +247,9 @@
 			files = (
 				459542DA14C55616002BFF69 /* InfoPlist.strings in Resources */,
 				4595431214C55661002BFF69 /* EKViewController.xib in Resources */,
+				77F5013B166F31A3004CEC28 /* Default-568h@2x.png in Resources */,
+				77F5013C166F31A3004CEC28 /* Default.png in Resources */,
+				77F5013D166F31A3004CEC28 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
