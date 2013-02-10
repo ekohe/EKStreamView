@@ -187,8 +187,8 @@
     if (footerView) {
         CGRect f = footerView.frame;
         f.origin = CGPointMake(columnPadding, maxHeight);
-        footerView.frame = f;
         f.size.width = self.bounds.size.width - columnPadding * 2;
+        footerView.frame = f;
         maxHeight += footerView.bounds.size.height + cellPadding;
     }
     
