@@ -81,6 +81,12 @@
 }
 
 
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    [self reloadData];
+}
+
+
 - (void)reloadData
 {
     [cellHeightsByIndex removeAllObjects];
@@ -99,6 +105,7 @@
         headerView = [delegate headerForStreamView:self];
         CGRect f = headerView.frame;
         f.origin = CGPointMake(columnPadding, cellPadding);
+        f.size.width = self.bounds.size.width - columnPadding * 2;
         headerView.frame = f;
         
         [contentView addSubview:headerView];
@@ -181,7 +188,7 @@
         CGRect f = footerView.frame;
         f.origin = CGPointMake(columnPadding, maxHeight);
         footerView.frame = f;
-        
+        f.size.width = self.bounds.size.width - columnPadding * 2;
         maxHeight += footerView.bounds.size.height + cellPadding;
     }
     
