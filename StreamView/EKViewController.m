@@ -38,7 +38,6 @@ static int MaxPage = 1;
     stream.cellPadding = 5.0f;
     stream.columnPadding = 5.0f;
     
-    [stream reloadData];
 }
 
 - (void)viewDidUnload
