@@ -86,7 +86,7 @@
     if (infoForCells.count) {
         NSInteger numberOfColumns = [delegate numberOfColumnsInStreamView:self];
         CGFloat destWidth = (self.bounds.size.width - (numberOfColumns + 1) * self.columnPadding) / numberOfColumns;
-        if (ABS(destWidth - columnWidth) < 1) {
+        if (ABS(destWidth - columnWidth) < 0.01f) {
             return;
         }
         
