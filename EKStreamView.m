@@ -143,7 +143,7 @@
     }
     
     
-    CGFloat cellHeight = headerView ? headerView.bounds.size.height + cellPadding : cellPadding;
+    CGFloat cellHeight = headerView ? headerView.bounds.size.height + cellPadding : 0;
     for (int i = 0; i < numberOfColumns; i++) {
         [cellHeightsByColumn addObject:[NSMutableArray arrayWithCapacity:20]];
         [rectsForCells addObject:[NSMutableArray arrayWithCapacity:20]];
