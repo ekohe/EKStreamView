@@ -102,31 +102,59 @@
     [rectsForCells removeAllObjects];
     [infoForCells removeAllObjects];
     [cellCache removeAllObjects];
-    [headerView removeFromSuperview];
-    [footerView removeFromSuperview];
+    
     
     for (EKStreamViewCellInfo *cellInfo in visibleCellInfo) {
         [cellInfo.cell removeFromSuperview];
     }
     
+    
+    
+    //We could not simply remove headerView/footerView from their parentView:we need to persist their state.
+    //For example, if an UITextView is a subview of headerView/footerView, remove them from parentView will make the keyboard hide.
     if ([delegate respondsToSelector:@selector(headerForStreamView:)]) {
-        headerView = [delegate headerForStreamView:self];
-        CGRect f = headerView.frame;
-        f.origin = CGPointMake(columnPadding, cellPadding);
-        f.size.width = self.bounds.size.width - columnPadding * 2;
-        headerView.frame = f;
+        UIView *tempHeaderView = [delegate headerForStreamView:self];
+        if (tempHeaderView) {
+            CGRect f = tempHeaderView.frame;
+            f.origin = CGPointMake(0, cellPadding);
+            f.size.width = self.bounds.size.width - columnPadding * 2;
+            tempHeaderView.frame = f;
+            
+            if (headerView != tempHeaderView) {
+                [headerView removeFromSuperview];
+                headerView = tempHeaderView;
+                [contentView addSubview:headerView];
+            }
+        }
+        else {
+            [headerView removeFromSuperview];
+            headerView = nil;
+        }
         
-        [contentView addSubview:headerView];
+        
     } else {
+        [headerView removeFromSuperview];
         headerView = nil;
     }
     
     if ([delegate respondsToSelector:@selector(footerForStreamView:)]) {
-        footerView = [delegate footerForStreamView:self];
-        [contentView addSubview:footerView];
+        UIView *tempFooterView = [delegate footerForStreamView:self];
+        if (tempFooterView) {
+            if (footerView != tempFooterView) {
+                footerView = tempFooterView;
+                [contentView addSubview:footerView];
+            }
+        }
+        else {
+            [footerView removeFromSuperview];
+            footerView = nil;
+        }
+        
     } else {
+        [footerView removeFromSuperview];
         footerView = nil;
     }
+
     
     // calculate height for all cells
     NSInteger numberOfColumns = [delegate numberOfColumnsInStreamView:self];
