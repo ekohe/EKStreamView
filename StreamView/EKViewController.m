@@ -31,7 +31,7 @@ static int MaxPage = 1;
     randomHeights = [[NSMutableArray alloc] initWithCapacity:100];
     for (int i = 0; i < 100; i++) {
         CGFloat h = arc4random() % 200 + 50.f;
-        [randomHeights addObject:[NSNumber numberWithFloat:h]];
+        [randomHeights addObject:@(h)];
     }
     stream.scrollsToTop = YES;
     
@@ -90,7 +90,7 @@ static int MaxPage = 1;
 
 - (CGFloat)streamView:(EKStreamView *)streamView heightForCellAtIndex:(NSInteger)index
 {
-    return [[randomHeights objectAtIndex:index] floatValue];
+    return [randomHeights[index] floatValue];
 }
 
 - (UIView *)headerForStreamView:(EKStreamView *)streamView

@@ -181,7 +181,7 @@
     
     for (int i = 0; i < numberOfCells; i++) {
         CGFloat height = [delegate streamView:self heightForCellAtIndex:i];
-        [cellHeightsByIndex addObject:[NSNumber numberWithFloat:height]];
+        [cellHeightsByIndex addObject:@(height)];
         
         NSUInteger shortestCol = 0;
         for (int j = 1; j < numberOfColumns; j++) {
@@ -190,9 +190,9 @@
                 shortestCol = j;
         }
         
-        NSMutableArray *cellHeightsInCol = [cellHeightsByColumn objectAtIndex:shortestCol];
-        [cellHeightsInCol addObject:[NSNumber numberWithFloat:height]];
-        NSMutableArray *rectsForCellsInCol = [rectsForCells objectAtIndex:shortestCol];
+        NSMutableArray *cellHeightsInCol = cellHeightsByColumn[shortestCol];
+        [cellHeightsInCol addObject:@(height)];
+        NSMutableArray *rectsForCellsInCol = rectsForCells[shortestCol];
         EKStreamViewCellInfo *info = [EKStreamViewCellInfo new];
         info.frame = CGRectMake(cellX[shortestCol], columnHeights[shortestCol] + cellPadding, columnWidth, height);
         info.index = i;
@@ -242,7 +242,7 @@
 
 - (id<EKResusableCell>)dequeueReusableCellWithIdentifier:(NSString *)identifier
 {
-    NSMutableArray *cellArray = [cellCache objectForKey:identifier];
+    NSMutableArray *cellArray = cellCache[identifier];
     id<EKResusableCell> cell = nil;
     if ([cellArray count] > 0) {
         cell = [cellArray lastObject];
@@ -269,7 +269,7 @@
     
     for (NSMutableArray *rectsForCellsInCol in rectsForCells) {
         for (int i = 0, c = [rectsForCellsInCol count]; i < c; i++) {
-            EKStreamViewCellInfo *info = [rectsForCellsInCol objectAtIndex:i];
+            EKStreamViewCellInfo *info = rectsForCellsInCol[i];
             CGFloat top = info.frame.origin.y;
             CGFloat bottom = CGRectGetMaxY(info.frame);
             
@@ -320,7 +320,7 @@
     if (scrollPosition == EKStreamViewScrollPositionNone) {
         return;
     }
-    EKStreamViewCellInfo *cellInfo = [infoForCells objectAtIndex:index];
+    EKStreamViewCellInfo *cellInfo = infoForCells[index];
     CGFloat cellPositionY = cellInfo.frame.origin.y;
     CGFloat cellHeight = cellInfo.frame.size.height;
     CGFloat viewHeight = self.frame.size.height;
@@ -364,10 +364,10 @@
         if (![newVisibleCellInfo containsObject:info]) {
             // info.cell.retainCount: 1
             NSString *cellID = info.cell.reuseIdentifier;
-            NSMutableArray *cellArray = [cellCache objectForKey:cellID];
+            NSMutableArray *cellArray = cellCache[cellID];
             if (cellArray == nil) {
                 cellArray = [NSMutableArray arrayWithCapacity:10];
-                [cellCache setObject:cellArray forKey:cellID];
+                cellCache[cellID] = cellArray;
             }
             
             [cellArray addObject:info.cell];

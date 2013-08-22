@@ -22,7 +22,7 @@
 @property (nonatomic, assign) NSUInteger index;
 
 // You SHOULD ONLY access this property when this object is in visibleCellInfo!
-@property (nonatomic, unsafe_unretained) UIView<EKResusableCell> *cell;
+@property (nonatomic, weak) UIView<EKResusableCell> *cell;
 
 @end
 
@@ -49,7 +49,7 @@
 
 
 @interface EKStreamViewUIScrollViewDelegate : NSObject<UIScrollViewDelegate>
-@property (nonatomic, unsafe_unretained) EKStreamView *streamView;
+@property (nonatomic, weak) EKStreamView *streamView;
 
 @end
 
@@ -74,7 +74,7 @@ typedef enum {
     EKStreamViewUIScrollViewDelegate *delegateObj;
 }
 
-@property (nonatomic, unsafe_unretained) id<EKStreamViewDelegate> delegate;
+@property (nonatomic, weak) id<EKStreamViewDelegate> delegate;
 @property (nonatomic, assign) CGFloat columnPadding;
 @property (nonatomic, assign) CGFloat cellPadding;
 
